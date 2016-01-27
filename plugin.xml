@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="edu.berkeley.eecs.emission.cordova.clientstats"
+        version="0.0.1">
+
+  <name>ClientStats</name>
+  <description>Store stats about the client. Note that this can technically be
+    merged in with the usercache, but then we need to decide what we are doing
+    about sending it out for visualization. Let's punt on that software
+    engineering change for now.
+  </description>
+  <author>K. Shankari (shankari@eecs.berkeley.edu)</author>
+  <license>Modified BSD license</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.6.0"/>
+  </engines>
+
+  <asset src="www/clientstats.js" target="js/clientstats.js"/>
+
+  <js-module src="www/clientstats.js" name="clientstats">
+    <clobbers target="cordova.plugins.BEMClientStats" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="ClientStats">
+        <param name="android-package" value="edu.berkeley.eecs.emission.cordova.clientstats.ClientStatsPlugin"/>
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/ClientStatsHelper.java" target-dir="src/edu/berkeley/eecs/emission/cordova/clientstats"/>
+    <source-file src="src/android/ClientStatsPlugin.java" target-dir="src/edu/berkeley/eecs/emission/cordova/clientstats"/>
+    <resource-file src="res/android/app_stats.xml" target-dir="res/values/app_stats.xml"/>
+  </platform>
+
+  <platform name="ios">
+    
+    <config-file target="config.xml" parent="/*">
+      <feature name="ClientStats">
+        <param name="ios-package" value="BEMClientStatsPlugin" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/BEMClientStatsDatabase.h"/>
+    <header-file src="src/ios/BEMClientStatsPlugin.h"/>
+    <source-file src="src/ios/BEMClientStatsDatabase.m"/>
+    <source-file src="src/ios/BEMClientStatsPlugin.m"/>
+    <resource-file src="src/ios/ClientStats.db"/>
+    <resource-file src="res/ios/app_stats.plist"/>
+  </platform>
+</plugin>
