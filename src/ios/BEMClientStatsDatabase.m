@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kalyanaraman Shankari. All rights reserved.
 //
 
-#import "ClientStatsDatabase.h"
+#import "BEMClientStatsDatabase.h"
 
 // Table name
 #define TABLE_CLIENT_STATS @"clientStats"

@@ -15,6 +15,8 @@
     sqlite3 *_database;
 }
 
++ (ClientStatsDatabase*)database;
+
 + (double) getCurrentTimeMillis;
 + (NSString*) getCurrentTimeMillisString;
 
