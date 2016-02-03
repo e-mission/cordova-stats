@@ -1,4 +1,4 @@
-package edu.berkeley.eecs.e_mission;
+package edu.berkeley.eecs.emission.cordova.clientstats;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -16,6 +16,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 import android.util.Log;
+
+import edu.berkeley.eecs.emission.R;
 
 /*
  * This class is used to instrument the way that the client is used, and push the results
