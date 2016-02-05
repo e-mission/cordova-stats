@@ -6,6 +6,8 @@
 	<string>client_os_version</string>
 	<key>metadata_app_version</key>
 	<string>client_app_version</string>
+    <key>app_launched</key>
+    <string>app_launched</string>
 	<key>confirmlist_resume</key>
 	<string>confirmlist_resume</string>
 	<key>confirmlist_auth_not_done</key>

@@ -19,6 +19,14 @@ public class ClientStatsPlugin extends CordovaPlugin {
                 data.getString(2)); // ts
             callbackContext.success();
             return true;
+        } else if (action.equals("storeEventNow")) {
+            Context ctxt = cordova.getActivity();
+            (new ClientStatsHelper(ctxt)).storeMeasurement(
+                data.getString(0), // key
+                null, // value
+                String.valueOf(System.currentTimeMillis())); // ts
+            callbackContext.success();
+            return true;
         } else {
             return false;
         }
