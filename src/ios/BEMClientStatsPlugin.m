@@ -17,10 +17,32 @@
         [self.commandDelegate sendPluginResult:result callbackId:callbackId];
     }
     @catch (NSException* e) {
-        NSString* msg = [NSString stringWithFormat: @"While logging %@, error %@", message, e];
+        NSString* msg = [NSString stringWithFormat: @"While storing stat, error %@", e];
         CDVPluginResult* result = [CDVPluginResult
                                    resultWithStatus:CDVCommandStatus_ERROR
                                    messageAsString:msg];
         [self.commandDelegate sendPluginResult:result callbackId:callbackId];
     }
 }
+
+- (void)storeEventNow:(CDVInvokedUrlCommand*)command
+{
+    NSString* callbackId = [command callbackId];
+    @try {
+        NSString* key = [[command arguments] objectAtIndex:0];
+
+        [[ClientStatsDatabase database] storeEventNow:key];
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }
+    @catch (NSException* e) {
+        NSString* msg = [NSString stringWithFormat: @"While storing stat, error %@", e];
+        CDVPluginResult* result = [CDVPluginResult
+                                   resultWithStatus:CDVCommandStatus_ERROR
+                                   messageAsString:msg];
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    }
+}
+@end
+

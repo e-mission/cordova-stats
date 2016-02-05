@@ -2,6 +2,7 @@
 <resources>
     <string name="metadata_os_version">client_os_version</string>
     <string name="metadata_app_version">client_app_version</string>
+    <string name="app_launched">app_launched</string>
     <string name="confirmlist_resume">confirmlist_resume</string>
     <string name="confirmlist_auth_not_done">confirmlist_auth_not_done</string>
     <string name="confirmlist_ucs_size">confirmlist_ucs_size</string>

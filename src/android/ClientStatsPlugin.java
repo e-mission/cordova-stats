@@ -3,9 +3,8 @@ package edu.berkeley.eecs.emission.cordova.clientstats;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.content.Intent;
+import android.content.Context;
 
 import edu.berkeley.eecs.emission.cordova.clientstats.ClientStatsHelper;
 
@@ -17,8 +16,16 @@ public class ClientStatsPlugin extends CordovaPlugin {
             (new ClientStatsHelper(ctxt)).storeMeasurement(
                 data.getString(0), // key
                 data.getString(1), // value
-                data.getString[2]) // ts
-            callbackContext.success(retObject);
+                data.getString(2)); // ts
+            callbackContext.success();
+            return true;
+        } else if (action.equals("storeEventNow")) {
+            Context ctxt = cordova.getActivity();
+            (new ClientStatsHelper(ctxt)).storeMeasurement(
+                data.getString(0), // key
+                null, // value
+                String.valueOf(System.currentTimeMillis())); // ts
+            callbackContext.success();
             return true;
         } else {
             return false;

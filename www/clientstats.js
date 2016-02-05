@@ -20,7 +20,7 @@ var ClientStats = {
      * instead of copying the template.
      */
     init: function() {
-        ClientStats.storeMeasurement("app_launched", NULL, moment().format("X"), function(error) {
+        ClientStats.storeEventNow("app_launched", function(error) {
             alert("Error "+error+" while initializing the client stats database");
         });
         ClientStats.db = window.sqlitePlugin.openDatabase({
@@ -30,12 +30,16 @@ var ClientStats = {
         })
     },
 
+    storeEventNow: function (key, errorCallback) {
+        exec(null, errorCallback, 'ClientStats', 'storeEventNow', [key, errorCallback]);
+    },
+
     storeMeasurementNow: function (key, value, errorCallback) {
         ClientStats.storeMeasurement(key, value, moment().format("X"), errorCallback);
     },
 
     storeMeasurement: function (key, value, ts, errorCallback) {
-        exec(key, value, ts, errorCallback, "ClientStats", "storeMeasurement", [key, value, ts]);
+        exec(null, errorCallback, "ClientStats", "storeMeasurement", [key, value, ts]);
     },
 }
 
