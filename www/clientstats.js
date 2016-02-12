@@ -19,12 +19,15 @@ var ClientStats = {
      * native calls, and on iOS, that will cause us to create a loggerDB
      * instead of copying the template.
      */
-    init: function() {
-        ClientStats.db = window.sqlitePlugin.openDatabase({
-            name: "clientStatsDB",
-            location: 0,
-            createFromLocation: 1
-        })
+    db: function() {
+        if (ClientStats.dbHandle == null) {
+            ClientStats.db = window.sqlitePlugin.openDatabase({
+                name: "clientStatsDB",
+                location: 2,
+                createFromLocation: 1
+            });
+        }
+        return ClientStats.dbHandle;
     },
 
     storeEventNow: function (key, errorCallback) {
