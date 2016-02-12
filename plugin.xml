@@ -26,6 +26,7 @@
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="ClientStats">
         <param name="android-package" value="edu.berkeley.eecs.emission.cordova.clientstats.ClientStatsPlugin"/>
+        <param name="onload" value="true"/>
       </feature>
     </config-file>
 
@@ -39,6 +40,7 @@
     <config-file target="config.xml" parent="/*">
       <feature name="ClientStats">
         <param name="ios-package" value="BEMClientStatsPlugin" />
+        <param name="onload" value="true"/>
       </feature>
     </config-file>
 
