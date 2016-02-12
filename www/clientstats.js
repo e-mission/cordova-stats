@@ -20,9 +20,6 @@ var ClientStats = {
      * instead of copying the template.
      */
     init: function() {
-        ClientStats.storeEventNow("app_launched", function(error) {
-            alert("Error "+error+" while initializing the client stats database");
-        });
         ClientStats.db = window.sqlitePlugin.openDatabase({
             name: "clientStatsDB",
             location: 0,

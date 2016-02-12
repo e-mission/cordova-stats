@@ -3,6 +3,15 @@
 
 @implementation BEMClientStatsPlugin
 
+- (void)pluginInitialize
+{
+    // TODO: We should consider adding a create statement to the init, similar
+    // to android - then it doesn't matter if the pre-populated database is not
+    // copied over.
+    NSLog(@"BEMClientStatsPlugin pluginInitialize singleton -> initialize native DB");
+    [[ClientStatsDatabase database] storeEventNow:@"app_launched"];
+}
+
 - (void)storeMeasurement:(CDVInvokedUrlCommand*)command
 {
     NSString* callbackId = [command callbackId];
